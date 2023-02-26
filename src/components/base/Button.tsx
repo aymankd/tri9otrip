@@ -8,7 +8,7 @@ export const Button: React.FC<ButtonProps> = memo(
       <button
         {...props}
         type="button"
-        className={`w-2/5 gap-3 rounded-full px-2 py-1 ${className}`}
+        className={`gap-3 rounded-full px-2 py-1 ${className}`}
       >
         {children}
       </button>

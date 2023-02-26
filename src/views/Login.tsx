@@ -1,10 +1,9 @@
-import { useState, useMemo, memo } from "react";
+import { NavLink } from "react-router-dom";
 import login_page_illustration from "../assets/images/login-page-illustration.png";
 import logo from "../assets/images/logo.png";
 import { Input } from "../components/base/Input";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "../components/base/Button";
+import { ROUTES } from "../constants/routes";
 
 export function Login() {
   return (
@@ -25,7 +24,7 @@ export function Login() {
           />
         </div>
       </div>
-      <div className="col-span-full flex flex-col items-center  bg-slate-50 lg:col-span-6 xl:col-span-7">
+      <div className="col-span-full flex flex-col items-center lg:col-span-6 xl:col-span-7">
         <div className="mt-24 mb-12">
           <img src={logo} className="h-24 w-auto" alt="person-with-phone" />
         </div>
@@ -37,27 +36,23 @@ export function Login() {
             Login to share and enjoy beautiful, amazing trips
           </h2>
           <div className="w-full py-4">
-            <Input
-              className="w-full"
-              placeholder="Email"
-              id="email"
-              Icon={<FontAwesomeIcon icon={faEnvelope} color={"grey"} />}
-            />
+            <Input className="w-full" placeholder="Email" id="email" />
             <Input
               className="my-2 w-full"
               placeholder="Password"
               type="password"
               id="password"
-              Icon={<FontAwesomeIcon icon={faLock} color={"grey"} />}
             />
             <h2 className="mt-4 w-full text-right font-poppinsMedium text-sm text-brand-100">
               Forgot password ?
             </h2>
           </div>
           <div className="flex w-full items-center justify-center">
-            <Button className="h-14 w-10/12 bg-brand-300 text-white hover:bg-brand-200 hover:shadow-inner">
-              Login
-            </Button>
+            <NavLink to={ROUTES.CREATE} className="h-14 w-10/12">
+              <Button className="h-full w-full bg-brand-300 text-white hover:bg-brand-200 hover:shadow-inner">
+                Login
+              </Button>
+            </NavLink>
           </div>
         </div>
         <div className="flex w-full"></div>

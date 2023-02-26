@@ -1,0 +1,3 @@
+export enum TRIP_ACTIONS {
+  UPDATE_TRIP = "UPDATE_TRIP",
+}
