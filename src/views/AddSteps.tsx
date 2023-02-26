@@ -36,9 +36,7 @@ export function AddSteps() {
           {tripState.trip.name.toUpperCase()}
         </div>
         <div className="px-7 text-center font-poppins text-xs text-main-text ">
-          In publishing and graphic design, Lorem ipsum is a placeholder text
-          commonly used to demonstrate the visual form of In publishing and
-          graphic design, Lorem ipsum is a placeholder text commonly used
+          {tripState.trip.description}
         </div>
       </div>
       <div className="flex flex-col px-4 py-2">
