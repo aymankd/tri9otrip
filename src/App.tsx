@@ -5,10 +5,15 @@ import createRootStore from "./redux/store/root.store";
 import { ROUTES } from "./constants";
 import { CreateTrip } from "./views/CreateTrip";
 import { AddSteps } from "./views/AddSteps";
+import { Landing } from "./views/landing";
 
 const store = createRootStore();
 
 const router = createBrowserRouter([
+  {
+    path: ROUTES.ROOT,
+    element: <Landing />,
+  },
   {
     path: ROUTES.AUTH,
     element: <Login />,

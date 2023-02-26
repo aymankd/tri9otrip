@@ -2,12 +2,12 @@ import { NavLink } from "react-router-dom";
 import { Button } from "../components/base/Button";
 import { ROUTES } from "../constants";
 
-export function Home() {
+export function Landing() {
   return (
     <div className="flex h-screen items-center justify-center">
-      <NavLink to={ROUTES.CREATE}>
+      <NavLink to={ROUTES.AUTH}>
         <Button className="h-full w-full bg-brand-300 text-white hover:bg-brand-200 hover:shadow-inner">
-          Create Trip
+          Go to Login
         </Button>
       </NavLink>
     </div>
