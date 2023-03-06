@@ -4,15 +4,16 @@ import { useCallback } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../components/base/Button";
-import { Input } from "../components/base/Input";
-import { Textarea } from "../components/base/TextArea";
+import { BetweenSteps, NextStep, Step } from "../components/step";
 import { tripsSelector } from "../redux/selectors/trip.selector";
 
 export function AddSteps() {
-  const nav = useNavigate();
-  const goBack = useCallback(() => nav(-1), [nav]);
+  /* --------------------------------- States --------------------------------- */
   const tripState = useSelector(tripsSelector);
-
+  /* --------------------------------- Others --------------------------------- */
+  const nav = useNavigate();
+  /* -------------------------------- Callbacks ------------------------------- */
+  const goBack = useCallback(() => nav(-1), [nav]);
   return (
     <div className="flex flex-col">
       <div className="flex flex-row justify-between px-4 py-8">
@@ -43,11 +44,20 @@ export function AddSteps() {
         <div className="font-poppinsBold text-lg">Amazing!</div>
         <p className="w-3/5 font-poppinsBold text-base">
           let’s add the places you visited in
-          <a className="text-brand-100 ">
+          <span className="text-brand-100 ">
             {" "}
             {tripState.trip.name.toUpperCase()}
-          </a>
+          </span>
         </p>
+      </div>
+      <div className="flex flex-col px-4 py-2">
+        {tripState.trip.steps.map((tripStep, index) => (
+          <div key={`step-${index + 1}`}>
+            <Step num={index + 1} tripStep={tripStep} />
+            <BetweenSteps />
+          </div>
+        ))}
+        <NextStep num={tripState.trip.steps.length + 1} />
       </div>
     </div>
   );

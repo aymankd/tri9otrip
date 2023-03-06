@@ -3,4 +3,11 @@ export interface TripDto {
   name: string;
   emoji: string;
   description: string;
+  steps: TripStep[];
+}
+
+export interface TripStep {
+  locationName: string;
+  isTent: boolean;
+  pictures: (File | undefined)[];
 }

@@ -1,3 +1,4 @@
 export enum TRIP_ACTIONS {
   UPDATE_TRIP = "UPDATE_TRIP",
+  ADD_TRIP_STEP = "ADD_TRIP_STEP",
 }

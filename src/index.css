@@ -2,9 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+input:checked + div {
+  @apply border-success-300;
+}
+
+input:checked + div svg {
+  @apply block;
+}
+
 @layer base {
   html {
     font-family: "Poppins", "Montserrat", system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .checkbox-label:has(input:checked) {
+    @apply border-green-200 bg-green-100 bg-opacity-50;
   }
 }
 
@@ -38,4 +52,10 @@
   font-family: "Poppins Medium";
   src: local("Poppins Medium"),
     url("./assets/fonts/Poppins-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Poppins Thin";
+  src: local("Poppins Thin"),
+    url("./assets/fonts/Poppins-Thin.ttf") format("truetype");
 }

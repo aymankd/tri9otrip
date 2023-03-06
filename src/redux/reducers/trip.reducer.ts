@@ -15,6 +15,18 @@ const initialTripstate: TripDto = {
   name: "",
   emoji: "",
   description: "",
+  steps: [
+    {
+      locationName: "Casablanca",
+      isTent: false,
+      pictures: [],
+    },
+    {
+      locationName: "Khenifra",
+      isTent: true,
+      pictures: [],
+    },
+  ],
 };
 
 const initialState: TripsState = {
@@ -38,6 +50,14 @@ export function tripReducer(
         trip: {
           ...state.trip,
           ...action.payload,
+        },
+      };
+    case TRIP_ACTIONS.ADD_TRIP_STEP:
+      return {
+        ...state,
+        trip: {
+          ...state.trip,
+          steps: state.trip.steps.concat(action.payload),
         },
       };
     default:
