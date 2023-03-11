@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
-import { Button } from "../components/base/Button";
-import { ROUTES } from "../constants";
+import { Button } from "../../components/base/Button";
+import { ROUTES } from "../../constants";
 
 export function Landing() {
   return (

@@ -1,26 +1,40 @@
-import { useRef, useCallback, InputHTMLAttributes } from "react";
+import { useRef, useCallback, InputHTMLAttributes, useState } from "react";
 
 type CheckBoxProps = {
   icon: JSX.Element;
+  inputText?: string;
+  inputClick?: () => void;
 };
 
 export const CheckBox = ({
+  inputText,
+  inputClick,
   icon,
   className,
   ...props
 }: CheckBoxProps & InputHTMLAttributes<HTMLInputElement>) => {
+  /* --------------------------------- States --------------------------------- */
+  // const [Dchecked, setdefaultChecked] = useState(defaultChecked);
   /* ---------------------------------- Refs ---------------------------------- */
   const inputRef = useRef<HTMLInputElement>(null);
   /* -------------------------------- Callbacks ------------------------------- */
-  const onCheckboxClick = useCallback(() => {
-    inputRef.current?.click();
-  }, [inputRef]);
+  const onCheckboxClick = useCallback<React.MouseEventHandler<HTMLDivElement>>(
+    (e) => {
+      inputRef.current?.click();
+      if (inputClick) inputClick();
+    },
+    [inputRef, inputClick]
+  );
   return (
     <div
       onClick={onCheckboxClick}
       className={`checkbox-label flex items-center justify-between rounded-xl border-2 py-2 px-4 ${className}`}
     >
-      {icon}
+      <div className="flex items-center gap-1">
+        {icon}
+        <div className="text-xs">{inputText}</div>
+      </div>
+
       <input
         type="checkbox"
         className="form-checkbox absolute h-6 w-6 opacity-0"

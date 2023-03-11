@@ -9,5 +9,20 @@ export interface TripDto {
 export interface TripStep {
   locationName: string;
   isTent: boolean;
-  pictures: (File | undefined)[];
+  pictures: (string | undefined)[];
+  nextStepInfo?: NextStepInfo;
+}
+
+export interface NextStepInfo {
+  budget: number;
+  transport: TransportTypes;
+}
+
+export interface TransportTypes {
+  car?: true;
+  train?: true;
+  walk?: true;
+  bike?: true;
+  bus?: true;
+  airplane?: true;
 }

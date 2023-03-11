@@ -3,12 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import { Button } from "../components/base/Button";
-import { Input } from "../components/base/Input";
-import { Textarea } from "../components/base/TextArea";
-import { ROUTES } from "../constants";
-import { updateTripAction } from "../redux/actions";
-import { tripsSelector } from "../redux/selectors/trip.selector";
+import { Button } from "../../components/base/Button";
+import { Input } from "../../components/base/Input";
+import { Textarea } from "../../components/base/TextArea";
+import { ROUTES } from "../../constants";
+import { updateTripAction } from "../../redux/actions";
+import { tripsSelector } from "../../redux/selectors/trip.selector";
 
 export function CreateTrip() {
   const dispatch = useDispatch();

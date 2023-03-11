@@ -1,19 +1,29 @@
+import { useCallback, useState } from "react";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useCallback } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Button } from "../components/base/Button";
-import { BetweenSteps, NextStep, Step } from "../components/step";
-import { tripsSelector } from "../redux/selectors/trip.selector";
+import { Button } from "../../components/base/Button";
+import { BetweenSteps, NextStep, Step } from "../../components/step";
+import { AddStepBudgetModal } from "../../components/step/AddStepBudgetModal";
+import { tripsSelector } from "../../redux/selectors/trip.selector";
 
 export function AddSteps() {
   /* --------------------------------- States --------------------------------- */
   const tripState = useSelector(tripsSelector);
+  const [showBudgetModal, setShowBudgetModal] = useState(false);
+  const [modalIndex, setmodalIndex] = useState(0);
   /* --------------------------------- Others --------------------------------- */
   const nav = useNavigate();
   /* -------------------------------- Callbacks ------------------------------- */
   const goBack = useCallback(() => nav(-1), [nav]);
+  const onCloseStepBudgetModal = () => {
+    setShowBudgetModal(false);
+  };
+  const OpenStepBudgetModal = (index: number) => {
+    setmodalIndex(index);
+    setShowBudgetModal(true);
+  };
   return (
     <div className="flex flex-col">
       <div className="flex flex-row justify-between px-4 py-8">
@@ -54,9 +64,17 @@ export function AddSteps() {
         {tripState.trip.steps.map((tripStep, index) => (
           <div key={`step-${index + 1}`}>
             <Step num={index + 1} tripStep={tripStep} />
-            <BetweenSteps />
+            <BetweenSteps
+              onClick={OpenStepBudgetModal.bind(null, index)}
+              nextStepInfo={tripStep.nextStepInfo}
+            />
           </div>
         ))}
+        <AddStepBudgetModal
+          show={showBudgetModal}
+          onClose={onCloseStepBudgetModal}
+          index={modalIndex}
+        />
         <NextStep num={tripState.trip.steps.length + 1} />
       </div>
     </div>

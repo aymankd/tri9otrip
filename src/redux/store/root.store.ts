@@ -14,7 +14,10 @@ function createRootStore() {
   const store = configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat([sagaMiddleware]),
+      getDefaultMiddleware({
+        immutableCheck: false,
+        serializableCheck: false,
+      }).concat([sagaMiddleware]),
     devTools: process.env.NODE_ENV !== "production",
   });
   return store;

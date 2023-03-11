@@ -8,6 +8,7 @@ type ModalProp = {
   show?: boolean;
   children?: JSX.Element | JSX.Element[] | string;
   portalId?: string;
+  header?: string;
 };
 
 export const Modal: React.FC<ModalProp> = ({
@@ -15,6 +16,7 @@ export const Modal: React.FC<ModalProp> = ({
   onClose,
   children,
   portalId = "modal",
+  header = "Add starting point",
 }) => {
   const inputRef = useRef<HTMLDivElement>(null);
   const elem = document.getElementById(portalId);
@@ -43,7 +45,7 @@ export const Modal: React.FC<ModalProp> = ({
                 />
               </div>
               <p className="items-center justify-center font-poppinsBold text-base">
-                Add starting point
+                {header}
               </p>
               <div className="h-10 w-10"></div>
             </div>

@@ -1,6 +1,11 @@
 import { AnyAction } from "redux";
 import { TRIP_ACTIONS } from "../../constants";
 import { TripDto } from "../../types/trip.type";
+import {
+  addTripStepActionType,
+  updateTripActionType,
+  updateTripStepBudgetActionType,
+} from "../actions";
 
 export type TripsState = {
   trip: TripDto;
@@ -15,18 +20,7 @@ const initialTripstate: TripDto = {
   name: "",
   emoji: "",
   description: "",
-  steps: [
-    {
-      locationName: "Casablanca",
-      isTent: false,
-      pictures: [],
-    },
-    {
-      locationName: "Khenifra",
-      isTent: true,
-      pictures: [],
-    },
-  ],
+  steps: [],
 };
 
 const initialState: TripsState = {
@@ -41,7 +35,10 @@ const initialState: TripsState = {
 export function tripReducer(
   // eslint-disable-next-line default-param-last
   state = initialState,
-  action: AnyAction
+  action:
+    | updateTripActionType
+    | addTripStepActionType
+    | updateTripStepBudgetActionType
 ): TripsState {
   switch (action.type) {
     case TRIP_ACTIONS.UPDATE_TRIP:
@@ -58,6 +55,18 @@ export function tripReducer(
         trip: {
           ...state.trip,
           steps: state.trip.steps.concat(action.payload),
+        },
+      };
+    case TRIP_ACTIONS.UPDATE_TRIP_STEP_BUDGET:
+      return {
+        ...state,
+        trip: {
+          ...state.trip,
+          steps: state.trip.steps.map((step, index) =>
+            index === action.payload.index
+              ? { ...step, nextStepInfo: action.payload.nextStepInfo }
+              : step
+          ),
         },
       };
     default:

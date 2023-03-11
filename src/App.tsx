@@ -5,7 +5,7 @@ import createRootStore from "./redux/store/root.store";
 import { ROUTES } from "./constants";
 import { CreateTrip } from "./views/CreateTrip";
 import { AddSteps } from "./views/AddSteps";
-import { Landing } from "./views/landing";
+import { Landing } from "./views/Landing";
 
 const store = createRootStore();
 

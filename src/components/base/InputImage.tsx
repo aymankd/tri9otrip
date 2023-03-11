@@ -2,7 +2,7 @@ import React, { useRef, useCallback } from "react";
 import { PlusCircle } from "../icons/PlusCircle";
 
 type InputImageProps = {
-  selectedImage: File | undefined;
+  selectedImage: string | undefined;
   setSelectedImage: (file: File) => any;
 };
 
@@ -18,11 +18,14 @@ export const InputImage = ({
   }, [inputContainerRef]);
   const onFileChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
+      console.log("fileChange:");
       const file = e.target?.files ? e.target?.files[0] : null;
       if (file) setSelectedImage(file);
     },
     [setSelectedImage]
   );
+
+  console.log("image: ", selectedImage);
 
   return (
     <div className="flex flex-col items-center">
@@ -40,7 +43,7 @@ export const InputImage = ({
       >
         {selectedImage && (
           <img
-            src={URL.createObjectURL(selectedImage)}
+            src={selectedImage}
             className="h-40 w-24 rounded-3xl object-cover"
             alt="stepImage"
           />

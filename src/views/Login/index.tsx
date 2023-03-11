@@ -1,9 +1,9 @@
 import { NavLink } from "react-router-dom";
-import login_page_illustration from "../assets/images/login-page-illustration.png";
-import logo from "../assets/images/logo.png";
-import { Input } from "../components/base/Input";
-import { Button } from "../components/base/Button";
-import { ROUTES } from "../constants/routes";
+import login_page_illustration from "../../assets/images/login-page-illustration.png";
+import logo from "../../assets/images/logo.png";
+import { Input } from "../../components/base/Input";
+import { Button } from "../../components/base/Button";
+import { ROUTES } from "../../constants/routes";
 
 export function Login() {
   return (
